@@ -1,0 +1,129 @@
+#include <iostream>
+#include <set> //including sets so i can keep track of the moves made as to not overwrite movies//
+#include <string>//include strings to get correct inputs by using getline() command//
+
+using namespace std;
+std::set<string>inputs;//our set
+
+
+
+int main()
+{  //first assigning each space with a variable//
+
+    string s1="-";
+    string s2="-";
+    string s3="-";
+    string s4="-";
+    string s5="-";
+    string s6="-";
+    string s7="-";
+    string s8="-";
+    string s9="-";
+
+
+
+
+
+;
+      int check=0;//a variable to check if the game is over by winning or tying
+      int turn=0;// a variable to check whose turn it is
+
+      while (check==0)//while loop that works as long as the game isn't over
+    { cout<<s1<<"\t"<<s2<<"\t"<<s3<<"\n";       //print the board
+     cout<<s4<<"\t"<<s5<<"\t"<<s6<<"\n";
+      cout<<s7<<"\t"<<s8<<"\t"<<s9<<"\n";
+
+          string movee;//a string variable for the moves
+
+
+
+
+
+        if (turn%2==0) //if the turn is even it's X's turn, otherwise it's O's
+            {cout<<"Enter your next move.\n";
+            cout<<"X's turn:  \n";
+            getline(cin,movee);//we use get line to include the space in the input
+            if (inputs.find(movee)!=inputs.end())//we use sets to store the inputs received, as to not overwrite a move
+                {cout<<"Invalid move. Try again:\n";
+                continue;}
+            else
+                {inputs.insert(movee);
+                }
+            if (movee== "1 1")//assign each position on the board to an input
+               {  s1="X";}
+             else if(movee== "1 2")
+               { s2="X";}
+          else if(movee== "1 3")
+               { s3="X";}
+         else if(movee== "2 1")
+                { s4="X";}
+             else if(movee== "2 2")
+               { s5="X";}
+         else if(movee== "2 3")
+               { s6="X";}
+          else if(movee== "3 1")
+               { s7="X";}
+          else if(movee== "3 2")
+              { s8="X";}
+         else if(movee== "3 3")
+             { s9="X";}
+             else {cout<<"Invalid move\n"; continue;}}
+
+        else
+            {cout<<"Enter your next move. \n";
+            cout<<"O's turn:  \n";
+            getline(cin, movee);
+             if (inputs.find(movee)!=inputs.end())
+                {cout<<"Invalid move. Try again:\n";
+                continue;}
+            else
+                {inputs.insert(movee);}
+
+            if (movee== "1 1")
+               { s1="O";}
+             else if(movee== "1 2")
+               { s2="O";}
+          else if(movee== "1 3")
+          { s3="O";}
+         else if(movee== "2 1")
+          { s4="O";}
+             else if(movee== "2 2")
+         { s5="O";}
+         else if(movee== "2 3")
+               { s6="O";}
+          else if(movee== "3 1")
+          { s7="O";}
+          else if(movee== "3 2")
+              { s8="O";}
+         else if(movee== "3 3")
+             { s9="O";}
+             else {cout<<"Invalid move. Try again:\n"; continue;}
+         }
+         if ((s1 == s2 && s2 == s3 && s1 != "-") ||  //implement an if condition to check for winning or tying conditions, first by checking top row
+    (s1 == s5 && s5 == s9 && s1 != "-") ||  // Check diagonal from top-left to bottom-right
+    (s1 == s4 && s4 == s7 && s1 != "-") ||  // Check left column
+    (s4 == s5 && s5 == s6 && s4 != "-") ||  // Check middle row
+    (s7 == s8 && s8 == s9 && s7 != "-") ||  // check bottom row
+    (s7 == s5 && s5 == s3 && s7 != "-") ||  // Check diagonal from top-right to bottom-left
+    (s2 == s5 && s5 == s8 && s2 != "-") ||  // Check middle column
+    (s3 == s6 && s6 == s9 && s3 != "-"))    // Check right column
+{if(turn%2==0)//if the turn is even and the game is over, its X's win, otherwise its O's
+    {cout<<"Congratulations X, you won the game!\n";}
+    else
+    {cout<<"Congratulations O, you won the game!\n";}
+    check=1;break;}
+else if (turn==8)// if all moves have been played without a win its a tie
+{cout<<"It's a tie!";
+cout<<s1<<"\t"<<s2<<"\t"<<s3<<"\n";
+     cout<<s4<<"\t"<<s5<<"\t"<<s6<<"\n";
+      cout<<s7<<"\t"<<s8<<"\t"<<s9<<"\n";
+break;}
+else
+{turn+=1;}}
+
+
+return 0;
+      }
+
+
+
